@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real State - Imobiliária de Luxo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-primary: #0d1b2a;
+            --color-secondary: #1b263b;
+            --color-accent: #e0e1dd;
+            --color-light: #f8f9fa;
+            --color-gold: #c8a97e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-primary);
+            background-color: var(--color-light);
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header e Navegação */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--color-primary);
+            position: relative;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        
+        .logo-icon:before {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 25px;
+            background-color: var(--color-gold);
+            top: 7px;
+            left: 7px;
+            border-radius: 2px;
+        }
+        
+        .logo-icon:after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 10px;
+            background-color: var(--color-accent);
+            bottom: 7px;
+            right: 7px;
+            border-radius: 1px;
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav li {
+            margin-left: 2rem;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--color-primary);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background-color: var(--color-gold);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--color-gold);
+        }
+        
+        nav a:hover:after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(13, 27, 42, 0.7), rgba(13, 27, 42, 0.7)), url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--color-gold);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #b8945f;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--color-gold);
+            color: var(--color-gold);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--color-gold);
+            color: white;
+        }
+        
+        /* Sobre */
+        .about {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--color-gold);
+            bottom: -10px;
+            left: 0;
+        }
+        
+        /* Propriedades */
+        .properties {
+            padding: 5rem 0;
+            background-color: var(--color-light);
+        }
+        
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .property-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .property-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .property-info {
+            padding: 1.5rem;
+        }
+        
+        .property-price {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--color-primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .property-address {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        .property-features {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+            font-size: 0.9rem;
+        }
+        
+        /* Formulários */
+        .auth-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .auth-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--color-light);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .auth-tab {
+            padding: 1rem 2rem;
+            background: none;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--color-primary);
+            opacity: 0.7;
+            transition: all 0.3s;
+            flex: 1;
+            text-align: center;
+        }
+        
+        .auth-tab.active {
+            opacity: 1;
+            border-bottom: 3px solid var(--color-gold);
+        }
+        
+        .auth-form {
+            display: none;
+        }
+        
+        .auth-form.active {
+            display: block;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-name {
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--color-primary);
+            color: white;
+            padding: 3rem 0;
+        }
+        
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--color-gold);
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--color-accent);
+            margin-bottom: 0.5rem;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--color-gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--color-accent);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+            
+            nav li {
+                margin: 0 1rem;
+            }
+            
+            .about-container {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .property-tabs {
+                justify-content: center;
+            }
+            
+            .user-info {
+                margin-top: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header com logo e navegação -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">Real State</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#alugar">Alugar</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#cadastro">Cadastro</a></li>
+                    <li id="user-nav" style="display: none;">
+                        <div class="user-info">
+                            <span class="user-name" id="user-display-name"></span>
+                            <button class="btn btn-outline" id="logout-btn">Sair</button>
+                        </div>
+                    </li>
+                    <li id="login-nav">
+                        <a href="#cadastro" id="login-link">Login</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Encontre o imóvel dos seus sonhos</h1>
+            <p>Oferecemos as melhores opções de imóveis para aluguel nos melhores bairros da cidade</p>
+            <a href="#alugar" class="btn">Explorar Imóveis</a>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section class="about" id="sobre">
+        <div class="container about-container">
+            <div class="about-text">
+                <h2 class="section-title">Sobre a Real State</h2>
+                <p>Com mais de 15 anos de experiência no mercado imobiliário, a Real State se consolidou como referência em negócios de alto padrão. Nossa missão é conectar pessoas aos seus lares dos sonhos, oferecendo um serviço personalizado e de excelência.</p>
+                <p>Nossa equipe de corretores especializados está pronta para atendê-lo com profissionalismo e dedicação, garantindo a melhor experiência na locação do seu imóvel.</p>
+                <p>Valorizamos a confiança depositada em nosso trabalho e buscamos sempre superar as expectativas de nossos clientes, com transparência e compromisso em todas as negociações.</p>
+            </div>
+            <div class="about-image"></div>
+        </div>
+    </section>
+
+    <!-- Propriedades -->
+    <section class="properties" id="alugar">
+        <div class="container">
+            <h2 class="section-title">Imóveis para Alugar</h2>
+            
+            <div class="property-grid">
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="property-info">
+                        <div class="property-price">R$ 3.500/mês</div>
+                        <div class="property-address">Vila Madalena, 456 - São Paulo</div>
+                        <div class="property-features">
+                            <span>2 quartos</span>
+                            <span>1 banheiro</span>
+                            <span>70m²</span>
+                        </div>
+                        <button class="btn" style="width: 100%; margin-top: 1rem;" onclick="solicitarAluguel(1)">Solicitar Aluguel</button>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1600585154084-4e5fe7c39198?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="property-info">
+                        <div class="property-price">R$ 5.800/mês</div>
+                        <div class="property-address">Itaim Bibi, 1011 - São Paulo</div>
+                        <div class="property-features">
+                            <span>3 quartos</span>
+                            <span>2 banheiros</span>
+                            <span>95m²</span>
+                        </div>
+                        <button class="btn" style="width: 100%; margin-top: 1rem;" onclick="solicitarAluguel(2)">Solicitar Aluguel</button>
+                    </div>
+                </div>
+                
+                <div class="property-card">
+                    <div class="property-image" style="background-image: url('https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+                    <div class="property-info">
+                        <div class="property-price">R$ 8.200/mês</div>
+                        <div class="property-address">Moema, 1213 - São Paulo</div>
+                        <div class="property-features">
+                            <span>3 quartos</span>
+                            <span>3 banheiros</span>
+                            <span>130m²</span>
+                        </div>
+                        <button class="btn" style="width: 100%; margin-top: 1rem;" onclick="solicitarAluguel(3)">Solicitar Aluguel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cadastro/Login -->
+    <section class="auth-section" id="cadastro">
+        <div class="container auth-container">
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="openAuthTab('login')">Login</button>
+                <button class="auth-tab" onclick="openAuthTab('cadastro')">Cadastro</button>
+            </div>
+            
+            <form id="login-form" class="auth-form active">
+                <div class="form-group">
+                    <label for="login-email">E-mail</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Entrar</button>
+            </form>
+            
+            <form id="cadastro-form" class="auth-form">
+                <div class="form-group">
+                    <label for="cadastro-nome">Nome Completo</label>
+                    <input type="text" id="cadastro-nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="cadastro-email">E-mail</label>
+                    <input type="email" id="cadastro-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="cadastro-telefone">Telefone</label>
+                    <input type="tel" id="cadastro-telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="cadastro-password">Senha</label>
+                    <input type="password" id="cadastro-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="cadastro-confirm-password">Confirmar Senha</label>
+                    <input type="password" id="cadastro-confirm-password" required>
+                </div>
+                <button type="submit" class="btn" style="width: 100%;">Cadastrar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Modal de Solicitação de Aluguel -->
+    <div class="modal" id="aluguel-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Solicitar Aluguel</h3>
+                <button class="close-modal" onclick="closeModal('aluguel-modal')">&times;</button>
+            </div>
+            <p id="modal-message">Para solicitar o aluguel de um imóvel, é necessário fazer login ou criar uma conta.</p>
+            <div style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                <button class="btn" onclick="redirectToLogin()">Fazer Login</button>
+                <button class="btn btn-outline" onclick="closeModal('aluguel-modal')">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container footer-container">
+            <div class="footer-section">
+                <h3>Real State</h3>
+                <p>Oferecemos as melhores soluções imobiliárias para você encontrar o lugar perfeito para morar ou investir.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contato</h3>
+                <p>Av. Brigadeiro Faria Lima, 1500</p>
+                <p>São Paulo - SP</p>
+                <p>Tel: (11) 3456-7890</p>
+                <p>Email: contato@realstate.com.br</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Links Rápidos</h3>
+                <a href="#home">Home</a>
+                <a href="#alugar">Alugar</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#cadastro">Cadastro</a>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="copyright">
+                &copy; 2023 Real State - Todos os direitos reservados
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Banco de dados simulado (em um sistema real, isso seria no backend)
+        let usersDB = JSON.parse(localStorage.getItem('realStateUsers')) || [];
+        let loggedInUser = JSON.parse(localStorage.getItem('realStateLoggedInUser')) || null;
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            updateUserInterface();
+            
+            // Event listeners para formulários
+            document.getElementById('login-form').addEventListener('submit', handleLogin);
+            document.getElementById('cadastro-form').addEventListener('submit', handleCadastro);
+            document.getElementById('logout-btn').addEventListener('click', handleLogout);
+        });
+        
+        // Atualiza a interface baseada no estado de login
+        function updateUserInterface() {
+            const userNav = document.getElementById('user-nav');
+            const loginNav = document.getElementById('login-nav');
+            const loginLink = document.getElementById('login-link');
+            
+            if (loggedInUser) {
+                userNav.style.display = 'block';
+                loginNav.style.display = 'none';
+                document.getElementById('user-display-name').textContent = loggedInUser.nome;
+            } else {
+                userNav.style.display = 'none';
+                loginNav.style.display = 'block';
+                loginLink.textContent = 'Login';
+            }
+        }
+        
+        // Alternar entre as abas de login e cadastro
+        function openAuthTab(tabName) {
+            // Esconder todos os formulários
+            document.getElementById('login-form').classList.remove('active');
+            document.getElementById('cadastro-form').classList.remove('active');
+            
+            // Remover classe active de todas as abas
+            const authTabs = document.querySelectorAll('.auth-tab');
+            authTabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Mostrar o formulário selecionado e ativar a aba
+            document.getElementById(`${tabName}-form`).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+        
+        // Processar login
+        function handleLogin(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Verificar se o usuário existe
+            const user = usersDB.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                loggedInUser = user;
+                localStorage.setItem('realStateLoggedInUser', JSON.stringify(user));
+                updateUserInterface();
+                alert('Login realizado com sucesso!');
+                document.getElementById('login-form').reset();
+            } else {
+                alert('E-mail ou senha incorretos. Tente novamente.');
+            }
+        }
+        
+        // Processar cadastro
+        function handleCadastro(e) {
+            e.preventDefault();
+            
+            const nome = document.getElementById('cadastro-nome').value;
+            const email = document.getElementById('cadastro-email').value;
+            const telefone = document.getElementById('cadastro-telefone').value;
+            const password = document.getElementById('cadastro-password').value;
+            const confirmPassword = document.getElementById('cadastro-confirm-password').value;
+            
+            // Validações
+            if (password !== confirmPassword) {
+                alert('As senhas não coincidem. Tente novamente.');
+                return;
+            }
+            
+            // Verificar se o usuário já existe
+            if (usersDB.find(u => u.email === email)) {
+                alert('Já existe uma conta com este e-mail. Tente fazer login.');
+                return;
+            }
+            
+            // Criar novo usuário
+            const newUser = {
+                id: Date.now(),
+                nome,
+                email,
+                telefone,
+                password
+            };
+            
+            usersDB.push(newUser);
+            localStorage.setItem('realStateUsers', JSON.stringify(usersDB));
+            
+            alert('Cadastro realizado com sucesso! Faça login para continuar.');
+            document.getElementById('cadastro-form').reset();
+            openAuthTab('login');
+        }
+        
+        // Processar logout
+        function handleLogout() {
+            loggedInUser = null;
+            localStorage.removeItem('realStateLoggedInUser');
+            updateUserInterface();
+            alert('Logout realizado com sucesso!');
+        }
+        
+        // Solicitar aluguel de imóvel
+        function solicitarAluguel(propertyId) {
+            if (!loggedInUser) {
+                // Mostrar modal solicitando login
+                document.getElementById('aluguel-modal').style.display = 'flex';
+                return;
+            }
+            
+            // Em um sistema real, aqui seria feita uma requisição para o backend
+            alert(`Solicitação de aluguel para o imóvel ${propertyId} enviada com sucesso! Nossa equipe entrará em contato em breve.`);
+        }
+        
+        // Fechar modal
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Redirecionar para login
+        function redirectToLogin() {
+            closeModal('aluguel-modal');
+            window.location.href = '#cadastro';
+            openAuthTab('login');
+        }
+    </script>
+</body>
+</html>
